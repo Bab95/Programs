@@ -87,7 +87,6 @@ struct node *reverse (struct node *head, int k)
     }
     if(next!=NULL){
         head->next = reverse(next,k);
-
     }
     return prev;
 }
