@@ -34,6 +34,7 @@ struct node *buildTree(){
   root->right->left->right->right = getnode(19);
   return root;
 }
+<<<<<<< HEAD
 void PostOrderSingleStack(struct node *root){
   if(root==NULL){
     return;
@@ -60,3 +61,5 @@ void PostOrderSingleStack(struct node *root){
     }
   }while(!s.empty());
 }
+=======
+>>>>>>> 998fa9023daeefc5ec78c2828c69302513ec48e4
