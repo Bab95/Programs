@@ -16,7 +16,6 @@ struct Node
 		right = NULL;
 	}
 };
-<<<<<<< HEAD
 void morrisTraversalPreOrder(struct node *root){
 	if(root==NULL){
 		return;
@@ -44,5 +43,3 @@ void morrisTraversalPreOrder(struct node *root){
 int main(){
 
 }
-=======
->>>>>>> 998fa9023daeefc5ec78c2828c69302513ec48e4
