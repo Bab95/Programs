@@ -1,0 +1,117 @@
+1.Given an unsoted array reorder it in-place such that
+nums[0]<=nums[1]>=nums[2]<=nums[3]....
+Input:[3,5,2,1,6,4]
+one possible output : [3,5,1,6,2,4]
+
+2.Given an array containing n distinct numbers from 0,1,2,.....n. find the one
+that is missing
+from the array.
+Input:[3,0,1]
+output:2
+expected O(n) and constant extra space.
+
+3.Given an array A of non negative integers, half of the integers in A are odd
+and half of the integers are even. Sort the array so that whenever A[i] is odd
+i is odd and whenever A[i] is even
+i is even.
+You may return any answer that satisfies the condition.
+Time O(n)
+Space O(1)
+Input:[4,2,5,7]
+output:[4,5,2,7]
+Explanation:[4,7,2,5],[2,5,4,7],[2,7,4,5] would also have been accepted.
+
+4.Given an expression with only '}' and '{'.Find the minimum number of brackets
+reversal
+to make the expression balanced.
+Time O(n)
+Space O(n)
+Input:"{{{"
+Output: Can't be made balanced
+Input: "{{{{}}"
+Output:1
+Input: "}{{}}{{{"
+Output:3
+
+5.Check whether the give Graph is bipartite or not.
+Input:G[][V] = {{0,1,0,1},
+                {1,0,1,0},
+                {0,1,0,1},
+                {1,0,1,0}}
+Output: Yes
+
+6.Find if there is a rectangle in binary matrix with corners as 1
+Input: mat[][] = {1 0 0 1 0
+                  0 0 1 0 1
+                  0 0 0 1 0
+                  1 0 1 0 1}
+Output:Yes
+1 0 1
+0 1 0
+1 0 1
+
+7.Find all triplets with zero sum.
+Input: arr[]={0,-1,2,-3,1}
+Output: {{0 -1 1},{2,-3,1}}
+
+8.Print a Matrix in spiral form
+Input:  1  2  3  4
+        5  6  7  8
+        9 10 11 12
+       13 14 15 16
+Output: 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+9.Check if reversing subarray makes the array sorted
+Input:1 2 5 4 3
+Output: Yes
+
+10.Given two strings s1 and s2, write a function to return true if s2 contains
+the permutation of s1.
+Input: s1="ab" s2="eidbaoo"
+Output: true
+Input: s1 ="ab" s2="eidboaoo"
+Output: False
+
+11.Given an array of integers you need to find the number of subarrays whose sum
+equal
+to k
+Time O(n)
+Space O(n)
+Input: arr[]={3,7,2,1,20},k=10
+Output:2
+Input: arr[]={0,0,0},k=0
+Output:6
+
+12.Given an array of integers and another non negative number k, find if there
+exists 2
+indices such i and j such that A[i]-A[j]=k, i!=j
+Time O(n)
+Space O(n)
+Input: A=[1,5,3] k=2
+Output: true
+Input: A=[2,7,5] k=3
+Output: true
+Input: A=[1,7,6] k =0
+Output: False
+
+13.Given an integer array find the maximum product of a triplet.
+Time O(n)
+Space O(1)
+Input:[10,3,5,6,20]
+Output:1200
+Input:[1,-4,3,-6,7,0]
+Output:168
+
+14.Given an array of n integers num and a target, find the number of targets
+i, j and k with 0<=i<j<k<n that satisfy the condition num[i]+num[j]+num[k]<target
+Input:[-2,0,1,3] target=2
+Output:2
+
+15.Given an array that contains both positive and negative integers, find the
+maximum product of subarrays
+Time O(n)
+Space O(1)
+Input:[-2,0,-1]
+Output:0
+Input:[-1,6,2,0,7,9]
+Output:63
