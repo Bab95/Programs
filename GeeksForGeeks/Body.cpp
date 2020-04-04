@@ -1,22 +1,20 @@
 #include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <string>
 using namespace std;
-void print(int arr[],int n){
-  for(int i=0;i<n;i++){
-    cout<<arr[i]<<" ";
-  }
-  cout<<endl;
+void input(vector<int>& arr,int n){
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
 }
-int min(int a,int b){
-    return a<b?a:b;
-}
-int max(int a,int b){
-    return a>b?a:b;
+void solve(){
+
 }
 int main(){
-  int t;
-  cin>>t;
-  while(t--){
-
-  }
-  return 0;
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
 }
