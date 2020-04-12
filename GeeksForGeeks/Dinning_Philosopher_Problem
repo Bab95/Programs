@@ -1,0 +1,38 @@
+In both solutions, we have to analyze when a deadlock happens. If a philosopher picks up 2 forks, then they will set them down after. So a philosopher could only really get stuck on 0 or 1 forks. Its easy to see that this means a deadlock only occurs if 5 forks are picked up (1 for each philosopher).
+
+Solution 1:
+Enforce that at most 4 philosophers can approach the table with sizelock. Then at most 4 forks are picked up, so there can't be a deadlock.
+
+Solution 2:
+Enforce that some philosophers pick up forks left then right, and others pick them up right then left. Then a fork is preferred by two neighboring philosophers, guaranteeing that if one of them has 1 fork, the other has 0, and thus at most 4 forks are picked up.
+
+from threading import Semaphore
+
+class DiningPhilosophers:
+    def __init__(self):
+        self.sizelock = Semaphore(4)
+        self.locks = [Semaphore(1) for _ in range(5)]
+
+    def wantsToEat(self, index, *actions):
+        left, right = index, (index - 1) % 5
+        with self.sizelock:
+            with self.locks[left], self.locks[right]:
+                for action in actions:
+                    action()
+from threading import Semaphore
+
+class DiningPhilosophers:
+    def __init__(self):
+        self.locks = [Semaphore(1) for _ in range(5)]
+
+    def wantsToEat(self, index, *actions):
+        left, right = index, (index - 1) % 5
+        
+        if index:
+            with self.locks[left], self.locks[right]:
+                for action in actions:
+                    action()
+        else:
+            with self.locks[right], self.locks[left]:
+                for action in actions:
+                    action()
