@@ -13,10 +13,9 @@
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
 #define po pop_back
-#define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-typedef long long int ll;
-typedef unsigned long long int ulli;
 using namespace std;
+const int M (int)10e6;
+std::bitset<M+1> bits;
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -27,20 +26,6 @@ void input(vector<int>& arr,int n){
         cin>>arr[i];
     }
 }
-void input(vector<ulli>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
-}
-ll max(ll a,ll b){
-    return a>b?a:b;
-}
-ulli max(ulli a,ulli b){
-    return a>b?a:b;
-}
-int max(int a,int b){
-    return a>b?a:b;
-}
 void print(vector<int>& ans,int n){
     fo(i,0,n-1){
         cout<<ans[i]<<" ";
@@ -50,14 +35,24 @@ void print(vector<int>& ans,int n){
 void solve(){
     int n;
     cin>>n;
-    vector<int> arr(n);
-    input(arr,n);
+    double sum=0;
+    fo(i,3,n){
+        if(bits[i]==1){
+            sum+=i;
+        }
+    }
+    cout<<sum<<endl;
+}
+void generate(){
+    fo(i,M,++i){
+        if(i%3==0||i%5==0){
+            bits[i] = 1;
+        }else{
+            bits[i] = 0;
+        }
+    }
 }
 int main(){
-    speed;
-    int t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+    generate();
+    solve();
 }

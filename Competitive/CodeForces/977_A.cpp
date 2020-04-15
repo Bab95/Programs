@@ -13,7 +13,6 @@
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
 #define po pop_back
-#define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
@@ -23,11 +22,6 @@ void swap(int *a,int *b){
     *b = tmp;
 }
 void input(vector<int>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
-}
-void input(vector<ulli>& arr,int n){
     fo(i,0,n-1){
         cin>>arr[i];
     }
@@ -48,16 +42,21 @@ void print(vector<int>& ans,int n){
     cout<<endl;
 }
 void solve(){
-    int n;
-    cin>>n;
-    vector<int> arr(n);
-    input(arr,n);
+    long long int n;
+    int k;
+    cin>>n>>k;
+    int count = 0;
+    while(n!=1&&count<k){
+        if(n%10==0){
+            n = n/10;
+        }
+        else{
+            --n;
+        }
+        ++count;
+    }
+    cout<<n<<endl;
 }
 int main(){
-    speed;
-    int t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+    solve();
 }

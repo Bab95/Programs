@@ -8,14 +8,10 @@
 #include <limits.h>
 #include <unordered_set>
 #include <stack>
-#include <string.h>
 #define fo(i,l,r) for(int i=l;i<=r;++i)
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
 #define po pop_back
-#define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-typedef long long int ll;
-typedef unsigned long long int ulli;
 using namespace std;
 void swap(int *a,int *b){
     int tmp = *a;
@@ -26,20 +22,6 @@ void input(vector<int>& arr,int n){
     fo(i,0,n-1){
         cin>>arr[i];
     }
-}
-void input(vector<ulli>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
-}
-ll max(ll a,ll b){
-    return a>b?a:b;
-}
-ulli max(ulli a,ulli b){
-    return a>b?a:b;
-}
-int max(int a,int b){
-    return a>b?a:b;
 }
 void print(vector<int>& ans,int n){
     fo(i,0,n-1){
@@ -52,9 +34,30 @@ void solve(){
     cin>>n;
     vector<int> arr(n);
     input(arr,n);
+    unordered_map<int,int> mmap;
+    pair<int,int> max_freq;//<Freq,Element>
+    max_freq.first = 0;
+    max_freq.second = 0;
+    for(int i=0;i<n;++i){
+        mmap[arr[i]]++;
+        if(mmap[arr[i]]>max_freq.first){
+            max_freq.first = mmap[arr[i]];
+            max_freq.second = arr[i];
+        } 
+    }
+
+    int random_index = (rand()%max_freq.first) + 1;
+    fo(i,0,n-1){
+        if(arr[i]==max_freq.second){
+            random_index--;
+        }
+        if(random_index==0){
+            cout<<i<<endl;
+            break;
+        }
+    }
 }
 int main(){
-    speed;
     int t;
     cin>>t;
     while(t--){

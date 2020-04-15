@@ -13,9 +13,9 @@
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
 #define po pop_back
-#define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 typedef long long int ll;
 typedef unsigned long long int ulli;
+#define M 10e9
 using namespace std;
 void swap(int *a,int *b){
     int tmp = *a;
@@ -23,11 +23,6 @@ void swap(int *a,int *b){
     *b = tmp;
 }
 void input(vector<int>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
-}
-void input(vector<ulli>& arr,int n){
     fo(i,0,n-1){
         cin>>arr[i];
     }
@@ -48,16 +43,31 @@ void print(vector<int>& ans,int n){
     cout<<endl;
 }
 void solve(){
-    int n;
-    cin>>n;
+    int n,k;
+    cin>>n>>k;
     vector<int> arr(n);
     input(arr,n);
+    sort(arr.begin(),arr.end());
+    //Boundary cases..
+    if(k==0){
+        if(arr[0]>=2){
+            cout<<arr[0]-1;
+        }else{
+            cout<<-1<<endl;
+        }
+        return;
+    }
+    if(k==n){
+        cout<<arr[n-1]<<endl;
+        return;
+    }
+    int ans = arr[k-1];
+    if(arr[k]==ans){
+        cout<<-1<<endl;
+        return;
+    }
+    cout<<ans<<endl;
 }
 int main(){
-    speed;
-    int t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+    solve();
 }
