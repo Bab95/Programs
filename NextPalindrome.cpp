@@ -9,34 +9,20 @@
 #include <unordered_set>
 #include <stack>
 #include <string.h>
-#include <math.h>
 #define fo(i,l,r) for(int i=l;i<=r;++i)
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
 #define po pop_back
-#define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 typedef long long int ll;
 typedef unsigned long long int ulli;
+typedef vector<int> BigInt;
 using namespace std;
-void generatePrimes(){
-  
-}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
     *b = tmp;
 }
 void input(vector<int>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
-}
-void input(vector<ll>& arr,int n){
-  fo(i,0,n-1){
-    cin>>arr[i];
-  }
-}
-void input(vector<ulli>& arr,int n){
     fo(i,0,n-1){
         cin>>arr[i];
     }
@@ -56,12 +42,6 @@ void print(vector<int>& ans,int n){
     }
     cout<<endl;
 }
-void print(vector<ll>& ans,int n){
-    fo(i,0,n-1){
-        cout<<ans[i]<<" ";
-    }
-    cout<<endl;
-}
 void solve(){
     int n;
     cin>>n;
@@ -69,10 +49,16 @@ void solve(){
     input(arr,n);
 }
 int main(){
-    speed;
     int t;
     cin>>t;
     while(t--){
         solve();
     }
 }
+/*
+875698237698327068
+875698237732896578
+
+759859675769
+769859958967
+*/

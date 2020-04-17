@@ -9,7 +9,6 @@
 #include <unordered_set>
 #include <stack>
 #include <string.h>
-#include <math.h>
 #define fo(i,l,r) for(int i=l;i<=r;++i)
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
@@ -18,9 +17,6 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void generatePrimes(){
-  
-}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -30,11 +26,6 @@ void input(vector<int>& arr,int n){
     fo(i,0,n-1){
         cin>>arr[i];
     }
-}
-void input(vector<ll>& arr,int n){
-  fo(i,0,n-1){
-    cin>>arr[i];
-  }
 }
 void input(vector<ulli>& arr,int n){
     fo(i,0,n-1){
@@ -56,17 +47,31 @@ void print(vector<int>& ans,int n){
     }
     cout<<endl;
 }
-void print(vector<ll>& ans,int n){
-    fo(i,0,n-1){
-        cout<<ans[i]<<" ";
-    }
-    cout<<endl;
-}
 void solve(){
     int n;
     cin>>n;
     vector<int> arr(n);
     input(arr,n);
+    int low = 0,mid = 0,high=n-1;
+    int i = 0;
+    while(mid<=high){
+        switch(arr[mid]){
+            case 0:
+                swap(&arr[low],&arr[mid]);
+                low++;
+                mid++;
+                break;
+            case 1:
+                mid++;
+                break;
+            case 2:
+                swap(&arr[high],&arr[mid]);
+                high--;
+                break;
+
+        }
+    }
+    print(arr,n);
 }
 int main(){
     speed;

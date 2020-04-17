@@ -9,7 +9,6 @@
 #include <unordered_set>
 #include <stack>
 #include <string.h>
-#include <math.h>
 #define fo(i,l,r) for(int i=l;i<=r;++i)
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
@@ -18,9 +17,6 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void generatePrimes(){
-  
-}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -56,17 +52,54 @@ void print(vector<int>& ans,int n){
     }
     cout<<endl;
 }
-void print(vector<ll>& ans,int n){
-    fo(i,0,n-1){
-        cout<<ans[i]<<" ";
-    }
-    cout<<endl;
+ll merge(vector<ll>& arr,vector<ll>& temp,int start,int mid,int end){
+	int i = start;
+	int j = mid;
+	int k = start;
+	ll count = 0 ;
+	while(i<mid&&j<=end){
+		if(arr[i]<=arr[j]){
+			temp[k++] = arr[i++];
+		}else{
+			count+=(mid-i);
+			temp[k++] = arr[j++];
+		}
+	}
+	while(i<mid){
+		temp[k++] = arr[i++];
+	}
+	while(j<=end){
+		temp[k++] = arr[j++];
+	}
+	fo(i,start,end){
+		arr[i] = temp[i];
+	}
+	return count;
+}
+ll mergeSort(vector<ll>& arr,int start,int end,vector<ll>& temp){
+	if(start>=end){
+		return 0;
+	}
+	ll count = 0;
+	int mid = (start+end)/2;
+	count+=mergeSort(arr,start,mid,temp);
+	count+=mergeSort(arr,mid+1,end,temp);
+	count+=merge(arr,temp,start,mid+1,end);
+	return count;
+}
+ll countInversions(vector<ll>& arr,int n){
+	ll count = 0;
+	vector<ll> temp(arr.size());
+	count += mergeSort(arr,0,n-1,temp);
+	return count;
 }
 void solve(){
     int n;
     cin>>n;
-    vector<int> arr(n);
+    vector<ll> arr(n);
     input(arr,n);
+    ll ans = countInversions(arr,n);
+	cout<<ans<<endl;
 }
 int main(){
     speed;

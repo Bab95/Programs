@@ -9,7 +9,6 @@
 #include <unordered_set>
 #include <stack>
 #include <string.h>
-#include <math.h>
 #define fo(i,l,r) for(int i=l;i<=r;++i)
 #define fi(i,r,l) for(int i=r;i>=l;--i)
 #define pb push_back
@@ -18,9 +17,6 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void generatePrimes(){
-  
-}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -67,6 +63,22 @@ void solve(){
     cin>>n;
     vector<int> arr(n);
     input(arr,n);
+    vector<int> temp;
+    temp.insert(temp.end(),arr.begin(),arr.end());
+    sort(temp.begin(),temp.end());
+    int start = 0;
+    int end = n-1;
+    while(start<n&&temp[start]==arr[start]){
+        ++start;
+    }
+    while(end>=start&&temp[end]==arr[end]){
+        --end;
+    }
+    if(start==n){
+        cout<<0<<" "<<0<<endl;
+        return;
+    }
+    cout<<start<<" "<<end<<endl;
 }
 int main(){
     speed;
