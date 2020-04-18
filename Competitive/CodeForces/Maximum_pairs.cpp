@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -64,7 +64,7 @@ void print(vector<ll>& ans, int n) {
 	cout << endl;
 }
 void solve() {
-	freopen("input.txt", "r", stdin);
+	//freopen("input.txt", "r", stdin);
 	int n;
 	cin >> n;
 	vector<bool> arr(101, false);
@@ -81,13 +81,8 @@ void solve() {
 	sort(array.begin(), array.end());
 	sort(brr.begin(), brr.end());
 	vector<vector<int> > graph(101, vector<int>());
-	for (int i = 1;i<101;i++) {
-		cout << arr[i] << " ";
-	}
-	cout << endl;
 	fo(i, 0, m - 1) {
 		int x = brr[i];
-		cout << x - 1 << " " << x << " " << x + 1 << endl;
 		if (arr[x - 1] == true) {
 			graph[x - 1].push_back(i);
 		}
@@ -98,17 +93,24 @@ void solve() {
 			graph[x].push_back(i);
 		}
 	}
-	fo(i, 0, n - 1) {
+	/*fo(i, 0, n - 1) {
 		cout << array[i] << " :";
 		print(graph[array[i]], graph[array[i]].size());
-	}
-	vector<bool> paired(m, false);
+	}*/
+	vector<bool> paired2(m, false);
+	vector<bool> paired1(n,false);
 	int count = 0;
 	fo(i, 0, n - 1) {
-		for (int j = 0;j<graph[array[i]].size();++j) {
-			if (!paired[graph[array[i]][j]]) {
-				count++;
-				paired[graph[array[i]][j]] = true;
+		if(!paired1[i]){
+			for (int j = 0;j<graph[array[i]].size();++j) {
+				if (!paired2[graph[array[i]][j]]) {
+					count++;
+					//cout<<count<<endl;
+					//cout<<array[i]<<" "<<brr[graph[array[i]][j]]<<endl;
+					paired2[graph[array[i]][j]] = true;
+					paired1[i] = true;
+					break;
+				}
 			}
 		}
 	}
