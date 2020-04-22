@@ -19,7 +19,7 @@ typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
 void generatePrimes(){
-  
+
 }
 void swap(int *a,int *b){
     int tmp = *a;
@@ -63,9 +63,9 @@ void print(vector<ll>& ans,int n){
     cout<<endl;
 }
 void solve(){
-    int n;
+    ll n;
     cin>>n;
-    vector<int> arr(n);
+    vector<ll> arr(n);
     input(arr,n);
 }
 int main(){

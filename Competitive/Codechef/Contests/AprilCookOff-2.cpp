@@ -17,6 +17,7 @@
 #define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 typedef long long int ll;
 typedef unsigned long long int ulli;
+#define M 1000000007
 using namespace std;
 void generatePrimes(){
 
@@ -56,29 +57,47 @@ void print(vector<int>& ans,int n){
 		}
 		cout<<endl;
 }
-void print(vector<ll>& ans,int n){
+void print(vector<ulli>& ans,int n){
 		fo(i,0,n-1){
 				cout<<ans[i]<<" ";
 		}
 		cout<<endl;
 }
+ll power(ll x, ll y, ll p)
+{
+	ll res = 1;
+	x = x % p;
+
+	while (y > 0) {
+		if (y & 1)
+			res = (res * x) % p;
+
+		y = y >> 1; // y = y/2
+		x = (x * x) % p;
+	}
+	return res;
+}
 void solve(){
-		ll n,m;
-		cin>>n>>m;
-		ulli max_size = (n-m+1);
-		ulli ans1 = (max_size%2==0)?(max_size/2*(max_size-1)):((max_size-1)/2)*(max_size);
-		ulli min_team_size = (n/m);
-		ulli min_team_size_with_extra_player = (n%m==0)?-1:(min_team_size+1);
-		ulli ans2 = 0;
-		if(min_team_size>1){
-			ans2 = ((min_team_size*(min_team_size-1))/2)*(m-n%m);
-		}
-		if(min_team_size_with_extra_player!=-1){
-			ans2+=(min_team_size_with_extra_player*(min_team_size_with_extra_player-1))/2*(n%m);
-		}
-		cout<<ans2<<" "<<ans1<<endl;
+	ll n,a;
+	cin>>n>>a;
+	ulli ans = 0;
+	ulli current = 1,prev = a;
+	for(int i=1;i<=n;i++){
+		current = power(prev,2*i-1,M);
+		//cout<<"i: "<<i<<" "<<current<<endl;
+		prev = (prev*current)%M;
+		prev = prev%(M-1);
+		ans = (ans+current)%M;
+		current = 1;
+	}
+	cout<<ans<<endl;
+
 }
 int main(){
 		speed;
-		solve();
+		int t;
+		cin>>t;
+		while(t--){
+				solve();
+		}
 }

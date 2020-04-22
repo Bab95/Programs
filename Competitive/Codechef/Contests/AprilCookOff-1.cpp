@@ -63,10 +63,19 @@ void print(vector<ll>& ans,int n){
     cout<<endl;
 }
 void solve(){
-    int n;
-    cin>>n;
-    vector<int> arr(n);
-    input(arr,n);
+    ll n,q;
+    cin>>n>>q;
+    vector<pair<int,int> > arr(n);
+    fo(i,0,q-1){
+      cin>>arr[i].first>>arr[i].second;
+    }
+    ll source = 0;
+    ll ans = 0;
+    fo(i,0,q-1){
+      ans += abs(source-arr[i].first);
+      ans += abs(arr[i].second-arr[i].first);
+    }
+    cout<<ans<<endl;
 }
 int main(){
     speed;

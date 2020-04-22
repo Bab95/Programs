@@ -63,22 +63,25 @@ void print(vector<ll>& ans,int n){
 		cout<<endl;
 }
 void solve(){
-		ll n,m;
-		cin>>n>>m;
-		ulli max_size = (n-m+1);
-		ulli ans1 = (max_size%2==0)?(max_size/2*(max_size-1)):((max_size-1)/2)*(max_size);
-		ulli min_team_size = (n/m);
-		ulli min_team_size_with_extra_player = (n%m==0)?-1:(min_team_size+1);
-		ulli ans2 = 0;
-		if(min_team_size>1){
-			ans2 = ((min_team_size*(min_team_size-1))/2)*(m-n%m);
+		ll n;
+		cin>>n;
+		ll k = 2;
+		ll x = 0;
+		while(true){
+			ll b = (ll)pow(2,k)-1;
+			if(n%b==0){
+				x = n/b;
+				break;
+			}
+			++k;
 		}
-		if(min_team_size_with_extra_player!=-1){
-			ans2+=(min_team_size_with_extra_player*(min_team_size_with_extra_player-1))/2*(n%m);
-		}
-		cout<<ans2<<" "<<ans1<<endl;
+		cout<<x<<endl;
 }
 int main(){
 		speed;
-		solve();
+		int t;
+		cin>>t;
+		while(t--){
+				solve();
+		}
 }

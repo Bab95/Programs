@@ -63,22 +63,49 @@ void print(vector<ll>& ans,int n){
 		cout<<endl;
 }
 void solve(){
-		ll n,m;
-		cin>>n>>m;
-		ulli max_size = (n-m+1);
-		ulli ans1 = (max_size%2==0)?(max_size/2*(max_size-1)):((max_size-1)/2)*(max_size);
-		ulli min_team_size = (n/m);
-		ulli min_team_size_with_extra_player = (n%m==0)?-1:(min_team_size+1);
-		ulli ans2 = 0;
-		if(min_team_size>1){
-			ans2 = ((min_team_size*(min_team_size-1))/2)*(m-n%m);
+		ll n;
+		cin>>n;
+		if(n%4!=0){
+			cout<<"NO"<<endl;
+			return;
 		}
-		if(min_team_size_with_extra_player!=-1){
-			ans2+=(min_team_size_with_extra_player*(min_team_size_with_extra_player-1))/2*(n%m);
+		cout<<"YES"<<endl;
+		vector<int> ans(n/2,0);
+		ans[0] = 2;
+		ans[1] = 4;
+		//ans[n/2] = 1
+		//ans[n/2+1] = 5;
+		unordered_set<int> odds;
+		odds.insert(1);
+		odds.insert(5);
+		for(int i=2;i<n/2-1;i+=2){
+			ans[i] = ans[i-1] + 2;
+			ans[i+1] = ans[i] + 2;
+			int sum = ans[i]+ans[i+1];
+			sum = sum/2;
+			int a = sum-2;
+			int b = sum+2;
+			while(a>1){
+				if(odds.find(a)==odds.end()&&odds.find(b)==odds.end()){
+					odds.insert(a);
+					odds.insert(b);
+					break;
+				}
+				a-=2;
+				b+=2;
+			}
 		}
-		cout<<ans2<<" "<<ans1<<endl;
+		for(auto it=odds.begin();it!=odds.end();++it){
+			ans.pb(*it);
+		}
+		sort(ans.begin()+n/2,ans.end());
+		print(ans,ans.size());
 }
 int main(){
 		speed;
-		solve();
+		int t;
+		cin>>t;
+		while(t--){
+				solve();
+		}
 }

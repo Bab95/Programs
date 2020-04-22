@@ -18,9 +18,6 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void generatePrimes(){
-
-}
 void swap(int *a,int *b){
 		int tmp = *a;
 		*a = *b;
@@ -63,22 +60,38 @@ void print(vector<ll>& ans,int n){
 		cout<<endl;
 }
 void solve(){
-		ll n,m;
-		cin>>n>>m;
-		ulli max_size = (n-m+1);
-		ulli ans1 = (max_size%2==0)?(max_size/2*(max_size-1)):((max_size-1)/2)*(max_size);
-		ulli min_team_size = (n/m);
-		ulli min_team_size_with_extra_player = (n%m==0)?-1:(min_team_size+1);
-		ulli ans2 = 0;
-		if(min_team_size>1){
-			ans2 = ((min_team_size*(min_team_size-1))/2)*(m-n%m);
+		ll n;
+		cin>>n;
+		vector<ll> arr(n);
+		input(arr,n);
+		vector<ll> dp(n,0);
+		dp[0] = arr[0];
+		ll max_diff = 0;
+		fo(i,1,n-1){
+			dp[i] = max(arr[i],dp[i-1]);
+			max_diff = max(max_diff,abs(dp[i]-arr[i]));
 		}
-		if(min_team_size_with_extra_player!=-1){
-			ans2+=(min_team_size_with_extra_player*(min_team_size_with_extra_player-1))/2*(n%m);
+		//print(dp,n);
+		int p = 1;
+		if(max_diff==0){
+			cout<<0<<endl;
+			return;
 		}
-		cout<<ans2<<" "<<ans1<<endl;
+		//cout<<"max_diff:"<<max_diff<<endl;
+		while(true){
+			ll _2p = (ll)pow(2,p)-1;
+			if(max_diff<=_2p){
+				cout<<p<<endl;
+				return;
+			}
+			++p;
+		}
 }
 int main(){
 		speed;
-		solve();
+		int t;
+		cin>>t;
+		while(t--){
+				solve();
+		}
 }
