@@ -17,6 +17,8 @@
 #define speed ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 typedef long long int ll;
 typedef unsigned long long int ulli;
+typedef vector<ll> vv;
+typedef unordered_map um;
 using namespace std;
 void generatePrimes(){
 
@@ -70,6 +72,9 @@ void solve(){
 }
 int main(){
     speed;
+    #ifndef ONLINE_JUDGE
+    	freopen("input.txt", "r", stdin);
+    #endif // !ONLINE_JUDGE
     int t;
     cin>>t;
     while(t--){
