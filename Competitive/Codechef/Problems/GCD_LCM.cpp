@@ -18,6 +18,9 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
+void generatePrimes(){
+
+}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -64,17 +67,24 @@ void print(vector<ll>& ans,int n){
     }
     cout<<endl;
 }
+int gcd(ll a,ll b){
+  if(b==0){
+    return a;
+  }
+  return gcd(b,a%b);
+}
 void solve(){
-    ll n;
-    cin>>n;
-    vector<ll> arr(n);
-    input(arr,n);
+    ll a,b;
+    cin>>a>>b;
+    if(b>a){
+      swap(&a,&b);
+    }
+    ll g = gcd(a,b);
+    ll l = (a*b)/g;
+    cout<<g<<" "<<l<<endl;
 }
 int main(){
     speed;
-    #ifndef ONLINE_JUDGE
-    	freopen("input.txt", "r", stdin);
-    #endif // !ONLINE_JUDGE
     int t;
     cin>>t;
     while(t--){
