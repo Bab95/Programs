@@ -18,75 +18,80 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void debugGraph(vector<vector<int> >& graph){
-  for(int i=0;i<graph.size();++i){
-			cout<<i<<" :";
-			for(int j=0;j<graph[i].size();++j){
-				cout<<graph[i][j]<<" ";
-			}
-			cout<<endl;
-		}
-}
 void swap(int *a,int *b){
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
+		int tmp = *a;
+		*a = *b;
+		*b = tmp;
 }
 void swap(ll *a,ll *b){
-    ll tmp = *a;
-    *a = *b;
-    *b = tmp;
+		ll tmp = *a;
+		*a = *b;
+		*b = tmp;
 }
 void input(vector<int>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
+		fo(i,0,n-1){
+				cin>>arr[i];
+		}
 }
 void input(vector<ll>& arr,int n){
-  fo(i,0,n-1){
-    cin>>arr[i];
-  }
+	fo(i,0,n-1){
+		cin>>arr[i];
+	}
 }
 void input(vector<ulli>& arr,int n){
-    fo(i,0,n-1){
-        cin>>arr[i];
-    }
+		fo(i,0,n-1){
+				cin>>arr[i];
+		}
 }
 ll max(ll a,ll b){
-    return a>b?a:b;
+		return a>b?a:b;
 }
 ulli max(ulli a,ulli b){
-    return a>b?a:b;
+		return a>b?a:b;
 }
 int max(int a,int b){
-    return a>b?a:b;
+		return a>b?a:b;
 }
 void print(vector<int>& ans,int n){
-    fo(i,0,n-1){
-        cout<<ans[i]<<" ";
-    }
-    cout<<endl;
+		fo(i,0,n-1){
+				cout<<ans[i]<<" ";
+		}
+		cout<<endl;
 }
 void print(vector<ll>& ans,int n){
-    fo(i,0,n-1){
-        cout<<ans[i]<<" ";
-    }
-    cout<<endl;
+		fo(i,0,n-1){
+				cout<<ans[i]<<" ";
+		}
+		cout<<endl;
+}
+void dfs(vector<vector<ll> >& graph,vector<ll>& path,ll i,ll n){
+	path.pb(i);
+	if(i==n){
+		for(int i=0;i<path.size();++i){
+			cout<<path[i]<<" ";
+		}
+		cout<<endl;
+		return;
+	}
+	for(int j=0;j<graph[i].size();++j){
+		dfs(graph,path,graph[i][j],n);
+	}
+	path.pop_back();
 }
 void solve(){
-    ll n;
-    cin>>n;
-    vector<ll> arr(n);
-    input(arr,n);
+		ll n;
+		cin>>n;
+		ll v;
+		vector<vector<ll> > graph(n+1,vector<ll>());
+		fo(i,2,n){
+			cin>>v;
+			graph[v].pb(i);
+		}
+
+		vector<ll> path;
+		dfs(graph,path,1,n);
 }
 int main(){
-    speed;
-    #ifndef ONLINE_JUDGE
-    	freopen("input.txt", "r", stdin);
-    #endif // !ONLINE_JUDGE
-    int t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+		speed;
+		solve();
 }

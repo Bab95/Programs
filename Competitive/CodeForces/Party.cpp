@@ -18,15 +18,6 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void debugGraph(vector<vector<int> >& graph){
-  for(int i=0;i<graph.size();++i){
-			cout<<i<<" :";
-			for(int j=0;j<graph[i].size();++j){
-				cout<<graph[i][j]<<" ";
-			}
-			cout<<endl;
-		}
-}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -73,20 +64,34 @@ void print(vector<ll>& ans,int n){
     }
     cout<<endl;
 }
+int ans = 0;
+void dfs(vector<vector<int> >& graph,int root,int x){
+  ans = max(ans,x);
+  for(int i=0;i<graph[root].size();++i){
+    dfs(graph,graph[root][i],x+1);
+  }
+}
 void solve(){
     ll n;
     cin>>n;
-    vector<ll> arr(n);
-    input(arr,n);
+    //vector<ll> arr(n);
+    vector<vector<int> > graph(n+1,vector<int>());
+    vector<int> roots;
+    ll v;
+    for(int i=1;i<=n;++i){
+      cin>>v;
+      if(v==-1){
+        roots.pb(i);
+      }else{
+        graph[v].pb(i);
+      }
+    }
+    for(int i=0;i<roots.size();++i){
+      dfs(graph,roots[i],1);
+    }
+    cout<<ans<<endl;
 }
 int main(){
     speed;
-    #ifndef ONLINE_JUDGE
-    	freopen("input.txt", "r", stdin);
-    #endif // !ONLINE_JUDGE
-    int t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+    solve();
 }

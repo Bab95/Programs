@@ -18,15 +18,6 @@
 typedef long long int ll;
 typedef unsigned long long int ulli;
 using namespace std;
-void debugGraph(vector<vector<int> >& graph){
-  for(int i=0;i<graph.size();++i){
-			cout<<i<<" :";
-			for(int j=0;j<graph[i].size();++j){
-				cout<<graph[i][j]<<" ";
-			}
-			cout<<endl;
-		}
-}
 void swap(int *a,int *b){
     int tmp = *a;
     *a = *b;
@@ -74,19 +65,34 @@ void print(vector<ll>& ans,int n){
     cout<<endl;
 }
 void solve(){
-    ll n;
-    cin>>n;
-    vector<ll> arr(n);
-    input(arr,n);
+    ll n,d;
+    cin>>n>>d;
+    string s;
+    cin>>s;
+    ll minjumps = 1;
+    ll maxreach = d;
+    ll steps = d;
+    for(int i=1;i<s.length();++i){
+       steps--;
+       if(s[i]=='1'){
+        maxreach = max(maxreach,i+d);
+      }
+      if(steps==0&&maxreach<=i){
+        cout<<-1<<endl;
+        return;
+      }else if(steps==0){
+          if(i<s.length()-1){
+            steps = maxreach-i;
+            minjumps++;
+
+          }else{
+              break;
+          }
+      }
+    }
+    cout<<minjumps<<endl;
 }
 int main(){
     speed;
-    #ifndef ONLINE_JUDGE
-    	freopen("input.txt", "r", stdin);
-    #endif // !ONLINE_JUDGE
-    int t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+    solve();
 }
