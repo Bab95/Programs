@@ -1,0 +1,73 @@
+VMWare | ZOOM Interview | 1.8 years experience [Reject]
+I recieved a call from VM-Ware few days back and interview was scheduled
+for next day.
+Round_1:
+Ques1.You are given a matrix of 0s and 1s you need to find the maximum number
+of connected 1s.[Find the largest island in matrix].
+Solution do simple DFS and keep track of maximum island encountered.
+
+Ques2.Design Parking Lot Using Oops concepts.
+
+Ques3.You are given a sorted linked list convert it into balanced BST.
+
+Round_2:
+Ques1. You are given a matrix of '*' and '-' * occurs before -
+  You find need to find the rows with amximum no of *'s.
+A lot of discussion on this ques interviewer was expecting the most optimal
+solution. I gave two solutions using binary search and he was OK with it
+
+What is difference between process and thread. What are the things shared by
+thread.
+
+How you can make program thread safe.
+
+A lot of theoratical questions from OS
+like what is paging,segmentation,threads,mutex,semaphore etc.
+What is thrashing.
+
+Explain diamond problem in Cpp.
+
+Difference between Java and Cpp.
+
+Interviewer was expecting me to know Cloud compting and virtualization etc.
+I couldn't tell about them as i didn't had any experience in these fields.
+
+Round_3.Round 3 was more like open discussion about various computer science concepts.
+A coding Problem was also given.
+
+Ques1.You are given a program in form of string you need to verify if it has balanced parenthesis.
+If not you need to print the mismatched lines.
+Addition: there could be " in the code you need to validate it as well.
+
+I was able to handle all the test cases. I did using Stack.Interviewer was happy with my solution.
+
+Ques2.Design attendance register. Use best possible data structure.
+I told unordered_map could be used. unordered_map<string,vector<int> >.
+He gave me hint if i know about trie data structure. I said yes. So he asked me about trie data structure.
+What it is how it will work in this case.
+I was able to explain.
+
+Ques3.He asked me about maps.What is the difference between unordered_map and ordered map. As i had used
+unordered_map in my previous solution. I explained about it that unordered_map uses hashing whereas map uses
+self balancing BST.
+Then he asked me about the complexity in both the cases.
+How will you balance not code i just need to draw a case on white board.
+
+Questions from OS: Paging,segementation,Fragmentation,Semaphore.
+Give me a scenario where counting semaphore could be used.
+Answer is read write problem.
+OOPs concepts few questions from OOPs.
+Explain Race condition.
+Few questions from JAVA and C++.
+
+Interviewer gave me a scenario like multiple user are running on same machine. They shouldn't know that
+other user is also running on the same machine.
+I think this question is related to virtualization. I had no clue about it.
+So i told that what we can do is we can assign different kernel threads to different user's request.
+Interviewer seems OK with it.
+After few time interviewer called me on Zoom to inform me that they are looking for a candidate
+who knows things like kubernetes, docker cloud compting etc.
+
+In the end i would study a lot of OS. I mean they ask a lot from OS.
+You should know about linux as well as cloud computing.
+In Coding you should be like very very good.
