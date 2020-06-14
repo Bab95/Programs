@@ -1,78 +1,60 @@
 class Solution {
 public:
-    void swap(char *a,char *b){
-        char tmp;
-        tmp = *a;
-        *a = *b;
-        *b = tmp;
-        return;
+    void dfs(vector<vector<int> >& graph,int i,vector<bool>& visited){
+        visited[i] = true;
+        for(int j=0;j<graph[i].size();++j){
+            if(!visited[graph[i][j]]){
+                dfs(graph,graph[i][j],visited);
+            }
+        }
+    }
+    int compare_strings(string& s1,string& s2){
+        int swaps = 0;
+        int i = 0;
+        while(i<s1.length()){
+            if(s1[i]!=s2[i]){
+                swaps++;
+                if(swaps>2){
+                    break;
+                }
+            }
+            ++i;
+        }
+        return swaps;
     }
     int numSimilarGroups(vector<string>& A) {
-        vector<vector<int> > groups(A.size(),vector<int>());
-        vector<bool> check(A.size(),false);
-        vector<int> indexes(A.size(),false);
-        for(int i=0;i<A.size()-1;i++){
-            if(check[i]==true){
+        int n = A.size();
+        vector<vector<int> > graph(n,vector<int>());
+        vector<bool> marked(n,false);
+        for(int i=0;i<n-1;++i){
+            if(marked[i]){
                 continue;
             }
-            for(int j=i+1;j<A.size();j++){
-                int ir=0;
-                int swaps = 0;
+            for(int j=i+1;j<n;++j){
                 if(A[i].length()!=A[j].length()){
                     continue;
                 }
-                while(ir<A[i].length()){
-                    if(A[i][ir]!=A[j][ir]){
-                        //indexes.push_back(ir);
-                        indexes[swaps] = ir;
-                        swaps++;
-                        if(swaps>2)
-                            break;
-                    }
-                    ir++;
-                }
-                if(swaps==2){
-                    //swap(&A[j][indexes[0]],&A[j][indexes[1]]);
-                    //if(A[i].compare(A[j])==0){
-                    groups[i].push_back(j);
-                    groups[j].push_back(i);
-                    //}
-                    //swap(&A[j][indexes[0]],&A[j][indexes[1]]);
+                int swaps = compare_strings(A[i],A[j]);
+                if(swaps>2){
+                    continue;
+                }else if(swaps==2){
+                    graph[i].push_back(j);
+                    graph[j].push_back(i);
                 }else if(swaps==0){
-                    groups[i].push_back(j);
-                    groups[j].push_back(i);
-                    check[j] = true;
+                    graph[i].push_back(j);
+                    graph[j].push_back(i);
+                    marked[j] = true;
                 }
             }
         }
-
-        int connected_components = 0;
-        vector<bool> visited(A.size(),false);
-        //printGraph(groups);
-        for(int i=0;i<A.size();i++){
+        int groups = 0;
+        vector<bool> visited(n,false);
+        for(int i=0;i<n;++i){
             if(!visited[i]){
-                dfs(groups,i,visited);
-                connected_components++;
+                dfs(graph,i,visited);
+                groups++;
             }
         }
-       return connected_components;
-    }
-    void printGraph(vector<vector<int> >& groups){
-        for(int i=0;i<groups.size();i++){
-            for(int j=0;j<groups[i].size();j++){
-                cout<<groups[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-        cout<<endl;
-    }
-    void dfs(vector<vector<int> >& groups,int i,vector<bool>& visited){
-        visited[i] = true;
-        for(vector<int>::iterator j=groups[i].begin();j!=groups[i].end();j++){
-            if(!visited[*j]){
-                dfs(groups,*j,visited);
-            }
-        }
-        return;
+        return groups;
     }
 };
