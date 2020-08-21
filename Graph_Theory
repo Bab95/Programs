@@ -1,0 +1,120 @@
+Graph theory:
+
+Rooted Tree: A rooted tree is a tree with a designated root node
+where every edge either points away from or towards the root node.
+When edges points away from the root graph is called arborescence(out-tree)
+and anti-arborescence(in-tree) otherwise.
+
+Shortest Path problem:
+Algorithms
+1.BFS(unweighted graphs)
+2.Dijkstra's Algorithm
+3.Bellman-Ford Algorithm
+4.Floyd-Warshall
+5.A*
+
+Connectivity:
+1.Union Find Data structure
+2.DFS
+3.BFS
+
+Negative Cycle:
+Algorithms:
+1.Bellman-Ford Algorithm
+2.Floyd-Warshall
+
+Strongly Connected Components: SCC can be thought of a self-contained cycles
+withinn a directed graph where every vertex in a given graph can reach every
+other vertex in the same cycle.
+Algorithms:
+1.Tarjan's Algorithm
+2.Kosaraju's Algorithm
+
+Travelling Salesman Problem: Travelling a list of cities in minimum amount.
+Algorithm:
+1.Held-Karp Algorithm [DP]
+2.Branch and bound
+3.Ant colony optimization.
+
+Bridges: A bridge / Cut Edge is any edge in a graph whose removal increases
+the number of Connected Components.
+
+Articulation Points: An articulation Point/Cut vertex is any node in a graph
+whose removal increases the number of connected Components.
+
+Minimum Spanning Tree:A MST is a subset of the edges of a connected edge-weighted
+graph that connects all the vertices together, without any cycles and with Minimum
+possible total edge weight.
+Algorithms:
+1.Krushkal's
+2.Prim's
+3.Boruvka
+
+Network FLow: max FLow
+With an infinite input source how much flow can we push through the Network
+Algorithms:
+1.Ford-Fulkerson Algorithm
+2.Edmonds-Karp Algorithm
+3.Dinic's Algorithm
+
+
+
+ALGORITHMS:
+01.DFS:
+time complexity O(V+E).
+Uses:
+1.Finding Connected Components
+2.Find Bridges
+/****
+algo:
+func dfs(at):
+  if(visited[at]):
+    return
+  visited[at] = true
+  neighours = graph[at]
+  for next in neighours
+    dfs(next)
+****/
+
+Code:
+
+
+02.BFS:
+time complexity O(V+E)
+Explores nodes in layered fashion
+function BFS(s,e):
+  prev = solve(s);
+  return reconnstructPath(s,e,prev);
+
+function solve(s):
+  Queue q
+  q.enques(q)
+  visited[false.....false]
+  visited[s] = true
+  prev = [null......null]
+  while !q.empty():
+    node = q.dequeue()
+    neighours = g.get(node)
+    for(next:neighours):
+      if(!visited[next]):
+        q.enqueue(next)
+        visited[next] = true
+        prev[next] = node
+  return prev
+
+function reconnstructPath(s,e,prev):
+  path = []
+  for(at = e;at!=null;at = prev[at]):
+    path.add(at)
+
+  path.reverse()
+  return path
+
+
+>>Path finding Problem in grid:Finding a path through maze.
+Dungeon problem:
+You are trapped in a 2D dungeon and need to find the quickest way out! The dungeon
+is composed of unit cubes which may or may not be filled with rock. It takes one minute
+to move one unit N,S,E,W. You cannot move diagonally and the maze is surrounded by solid
+rock on all sides.
+Is an escape possible? If yes, how long will it take?
