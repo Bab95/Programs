@@ -1,0 +1,5 @@
+static vs global
+Both are stored in data segment
+The difference is that global variable has externally visible
+linker i.e its scope is in all files.
+It can be accessed using extern keyword.

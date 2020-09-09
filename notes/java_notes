@@ -1,0 +1,232 @@
+-----------JAVA-----------
+Enum:- 
+1.Enums are used when we know all the values
+at compile time.
+2.Enum declaration can be done outsied of the
+class as well.
+
+enum Color{
+    RED,GREEN,BLUE;
+}
+public class test{
+    public static void main(String[] args){
+        Color c1 = Color.RED;
+        System.out.println(c1);
+    }
+}
+
+Decision Making:-
+1.//for each loop.
+for(int num : numbers){
+    if(num>maxSoFar){
+        maxSoFar = num;
+    }
+}
+
+Widening primitive data types:-
+System.out.print("Y"+"O");
+System.out.println('L'+'O');
+Output:- YO155
+when printed in single quotes it is converted into int and then added.
+
+Widening or Automatic Conversion:-
+Bytes->Short->int->Long->Float->Double
+Small data to big data conversion happens automatically
+
+But from bigger data type we have to explicitly convert back to smaller data types.
+double d = 100.04;
+long l = (long)d;
+
+Labels:- Java doesn't support goto but it supports label but that only within loops
+
+outer:
+    for(int i=0;i<10;++i){
+        for(int j=0;j<10;++j){
+            if(j==1){
+                // this will go out of both loops.
+                break outer;
+            }
+        }
+    }
+
+
+continue in Java:-
+outer:
+    for(int i=0;i<10;++i){
+        for(int j=0;j<10;++j){
+            if(j==1){
+                // this will go out of both loops.
+                continue outer;
+            }
+        }
+    }
+
+null in Java:-
+null is neither an object nor a type but it can be typecasted 
+Double dbl = (Double)null;
+String str = (String)null;
+
+AutoBoxing and unboxing:-During autoboxing and unboxing operations compiler throws 
+NullpointerException error if a null value is assigned to primitive boxed data type.
+Integer i = null;
+int a = i;
+
+Instanceof operator:-The Java instanceof operator is used to test wheather the object is instance 
+of the specified type.
+At runtime the result of instanceof operator is true if the value of the expression is not null.
+
+Integer i = null;
+Integer j = 10;
+System.out.println(i instanceof Integer);
+System.out.println(j instanceof Integer);
+output:-
+false
+true
+
+Static and non-static methods:-
+We cannot call a non-static method on a reference variable with null value, it will throw NullPointerException but static methods
+can be called with null values. Since static methods are bonded using static binding they won't throw NullPointerException.
+Test obj = null;
+obj.staticMethod();
+obj.nonStaticMethod();
+
+Comparison and not equal operator are allowed with null in Java.
+
+Currying Fucntions:-
+Fucntion currying is a concept of breaking a function with many argumnets into many functions with single argument in such a way that output is same.
+addThreeNumbersFunctions(a,b,c){
+    return (a+b+c);
+}
+
+addNumberOne(a){
+    return addNumberTwo(b){
+        return addNumberThree(c){
+            return (a+b+c);
+        }
+    }
+}
+
+
+Function<Integer,Function<Integer,Integer> > curryAdder = u->v->u+v;
+
+System.out.println("add 2,3"+curryAdder.apply(2).apply(3));
+
+Function<Integer,Function<Integer,Integer> > triadder = u->w->v->u+w+v;
+
+-------------Java OOPS----------------
+In Java all the elements are allocated on the heap dynamically.
+When only declaring a variable no memory is allocated. To allocate memory to an object
+new() must be used.
+
+Test t = new Test();
+t.show();
+
+Ways of creating objects in Java
+1.Using new
+2.Using New Instance
+
+try{
+    Class cls = Class.forName("NewInstanceExample");
+    NewInstanceExample obj = (NewInstanceExample)cls.newInstance();
+}catch(Exception e){
+    e.printStackTrace();
+}
+
+3.clone() method:-When clone() is called on any object the JVM actually creates a new object and copies
+all the content of the pervious object into it.Creating object using clone doesn't invoke any constructor.
+
+public class CloneExample implements Clonable{
+    @Override
+    protected Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+    public static void main(String args[]){
+        CloneExample obj1 = new CloneExample();
+        try{
+            CloneExample obj2 = (CloneExample)obj1.clone();
+            System.out.println(obj1.name);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+
+4.Deserialize:- Whenever an object is serialized and deserialized JVM creates a separate object.
+In deserailize JVM doesn't use any constructor to create the object.
+To deserialize we must implement Serializable interface in the class.
+
+class DeserializationExample implements Serializable{
+    private String name;
+    DeserializationExample(String name){
+        this.name = name;
+    }
+    public static void main(String args[]){
+        try{
+            DeserializationExample d = new DeserializationExample("someting");
+            FileOutputStream f = new FileOutputStream("file.txt);
+            ObjectOutputStream oos = new ObjectOutputStream(f);
+            oos.writeObject(d);
+            oos.close();
+            f.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+class DeserializationExample implements Serializable{
+    private String name;
+    public static void main(String args[]){
+        try{
+            DeserializationExample d;
+            FileOutputStream f = new FileOutputStream("file.txt");
+            ObjectInputStream oos = new ObjectInputStream(f);
+            d = (DeserializationExample)oos.readObject();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(d.name);
+    }
+}
+
+Swapping two objects in Java:-
+Solution is to make wrapper class that contains references of objects.We can 
+swap objects by swapping refernces of wrapper class.
+Class carWrapper{
+    Car c;
+    carWrapper(Car c){
+        this.c = c;
+    }
+}
+public static void swap(carWrapper cw1,carWrapper cw2){
+    Car tmp = cw1.c;
+    cw1.c = cw2.c;
+    cw2.c = tmp;
+}
+
+Inheritance:-
+
+class MountainBike extends Bicycle{
+    public int seatHeight;
+    public MountainBike(int gear,int speed,int startHeight){
+        super(gear,speed);
+        seatHeight = startHeight;
+    }
+
+    public void seatHeight(int newValue){
+        seatHeight = newValue;
+    }
+}
+
+Multiple inheritance:-(Through interfaces):-
+Although java doesn't support multiple inheritance but it can be achieved though interfaces.
+
+A subclass inherits all the members from its superclass. Constructors are not members,
+so they are not inherited by subclass but the constructor of the superclass can be invoked from subclass.
+
+A subclass doesn't inherit the private members of parent class.However if super class have public methods for
+accessing its private fields, these can also be used by the subclass.
+
+We can write

@@ -1,0 +1,56 @@
+Synchronization in Java :- Synchronization is a concept that ensures that
+exactly one thread is entertained at a time.
+Think of it as a queue at a ticketing
+counter where a number if customers are waiting for current customer
+to finish. 
+Synchronization deals with the threads in the same way as a ticketing
+counter.
+
+eg :- A process adds and multiply two numbers
+
+Why :- Synchronization allows to perform concurrent programming and 
+prevent data corruption.
+Class Array{
+    void printNumbers(int n){
+        for(int i=0;i<=3;++i){
+            System.outprintln(n*i);
+            try{
+                Thread.sleep(500);
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+class myThread extends Thread{
+    Array a;
+    myThread(Array a){
+        this.a = a;
+    }
+    public void run(){
+        a.printNumbers(1);
+    }
+}
+
+class myThread2 extends Thread{
+    Array a;
+    myThread2(Array a){
+        this.a = a;
+    }
+    public void run(){
+        a.printNumbers(10);
+    }
+}
+class main{
+    public static void main(Strings[] args){
+        Array arr = new Array();
+        myThread t1 = new myThread(arr);
+        myThread2 t2 = new myThread2(arr);
+        t1.start();
+        t2.start();
+    }
+}
+
+add Synchronized before method printNumber()
+In Synchronized case thread t1 will be fully completed before t2.

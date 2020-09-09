@@ -1,0 +1,66 @@
+Nginx(webSever)
+
+Image vs Container:-
+An Image is the app we want to run.
+Container is an instance of that image running as a process.
+
+docker container run --publish 80:80 nginx
+
+1.Download Image
+2.Started new container from that image.
+3.Opened port 80 on the host ip 80.
+4.Routes that traffic to the container Ip port 80.
+
+docker container run --publish 80:80 --detach nginx
+Detach allows to run in background.
+
+docker container ls 
+
+docker container stop <id>
+
+docker container ls -a
+
+docker container run --publish 80:80 --detach --name <nameOfServer> nginx
+--name allows to change the name of the server. Otherwise a default name will be given.
+
+
+docker container logs <Name>
+as docker is now running in background so to check logs.
+
+
+docker container top policia
+Shows the processes running in the container.
+
+docker container rm <id1> <id2> <id3>
+If we try to remove all the containers the running will be saved.
+
+docker container rm -f <id>
+It will remove the container even if it is running forcefully.
+
+container vs VM
+Containers aren't mini-VM's
+
+docker run --name mongo -d mongo
+
+Passing env variables --env or -e 
+in case of mysql MYSQL_RANDOM_ROOT_PASSWORD=yes
+then use docker logs to find password it created.
+
+docker container stats
+shows the live status of the container.
+
+Getting a shell inside container.
+docker container run -it => start new container interactively.
+
+docker container -it --name proxy nginx bash
+to run interactive terminal on container.
+-it is combination of two options i=>interactive stdin t=>pseudo tty (putty?).
+
+to enter this interactive terminal again
+docker start -ai <name>
+
+docker container exec -it mysql bash
+now if exit it won't stop running the bash on mysql
+
+docker container run -it        vs    docker container exec -it
+start new container interactive  |run additional commands in existing container.
