@@ -1,4 +1,5 @@
-#include <string>
+#include <bits/stdc++.h>
+using namespace std;
 class Solution {
 public:
     void dfs(int i,int j,int n,vector<string> &result,string s){
@@ -24,3 +25,11 @@ public:
         return result;
     }
 };
+int main(){
+    Solution *obj = new Solution();
+    vector<string> ans = obj->generateParenthesis(3);
+    for(auto it : ans){
+        cout<<it<<endl;
+    }
+    return  0;
+}

@@ -1,5 +1,5 @@
 -----------JAVA-----------
-Enum:- 
+Enum:-
 1.Enums are used when we know all the values
 at compile time.
 2.Enum declaration can be done outsied of the
@@ -62,16 +62,16 @@ outer:
     }
 
 null in Java:-
-null is neither an object nor a type but it can be typecasted 
+null is neither an object nor a type but it can be typecasted
 Double dbl = (Double)null;
 String str = (String)null;
 
-AutoBoxing and unboxing:-During autoboxing and unboxing operations compiler throws 
+AutoBoxing and unboxing:-During autoboxing and unboxing operations compiler throws
 NullpointerException error if a null value is assigned to primitive boxed data type.
 Integer i = null;
 int a = i;
 
-Instanceof operator:-The Java instanceof operator is used to test wheather the object is instance 
+Instanceof operator:-The Java instanceof operator is used to test wheather the object is instance
 of the specified type.
 At runtime the result of instanceof operator is true if the value of the expression is not null.
 
@@ -192,7 +192,7 @@ class DeserializationExample implements Serializable{
 }
 
 Swapping two objects in Java:-
-Solution is to make wrapper class that contains references of objects.We can 
+Solution is to make wrapper class that contains references of objects.We can
 swap objects by swapping refernces of wrapper class.
 Class carWrapper{
     Car c;
@@ -229,4 +229,187 @@ so they are not inherited by subclass but the constructor of the superclass can 
 A subclass doesn't inherit the private members of parent class.However if super class have public methods for
 accessing its private fields, these can also be used by the subclass.
 
-We can write
+StringBuilder Class:- StringBuilder represents mutable sequence of characters.
+StringBuilder and StringBuffer classes differ on the basis of synchronization.StringBuffer class provides synchronization.
+Constructors:-
+  StringBuilder() ->16 capacity
+  StringBuilder(int capacity);
+  StringBuilder(charSequence seq);
+  StringBuilder(String str);
+
+Methods:-
+  char charAt(int index);
+  StringBuilder append(X x); ->appends string representation of x.
+  StringBuilder deleteCharAt(int index);
+  void getChars(int srcBegin,intsrcEnd,char[] dst,int dstbegin);
+
+
+
+Garbage Collection in Java:-
+Programmer is only responsible for making the object eligible for Garbage Collection if no longer required.
+An object is said to be eligible for Garbage Collection if it doesn't have any references.
+Ways to make object eligible for Garbage Collection.
+1.Nullyfying the reference variable
+Student s1 = new Student();
+s1 = null;
+
+Island of Isolation:-
+  Class Test{
+    Test t
+    public static void main(String args[]){
+      Test t1 = new Test();
+      Test t2 = new Test();
+      Test t3 = new Test();
+      t1.t = t2;
+      t2.t = t3;
+      t3.t = t1;
+      t1 = null;
+      t2 = null;
+      t3 = null;
+      /*
+      Although at this point 3 objects available but as they are being refered by another object GC won't clean them.
+      */
+    }
+  }
+
+
+Method of requesting JVM to Run Garbage Collector:- Whenever an object is made eligible for Garbage Collection it
+may not be destroyed immediately.
+
+1.By System Class:-
+  System.gc();
+  gc is a static member of System class.
+
+2.By Runtime class:-
+  Runtime r = Runtime.getRuntime();
+  Runtime Class has the following methods:-
+    freeMemory();
+    totalMemory();
+    gc();
+
+
+Finalization:-Just before destroying any object GC always calls finalize() method to perform clean-up activity on the object.
+finalize() method is declared in the Object Class
+protected void finalize() throws throwable{
+
+}
+
+*>finalize() method can be called just like a normal function but in that case object won't be destroyed.
+
+If finalize() method is called explicitly and any uncaught exception is thrown program will be terminated abnormally.
+And in case the GC calls finalize() method and an exception is thrown JVM will simply ignore this exception.
+
+Memory Leak:- Memory leak is a useless object which isn't eligible for GC.
+
+Inner Classes:-
+  Without existing one type of object if there is no chance of existing another type of object then Inner classes shall be used.
+  eg:-1.Without existing Car Object there are no chances of existing Wheel Object.
+  class Car{
+    class Wheel{
+
+    }
+  }
+  eg:-2.Without existing Bank Object there are no chances of existing Account Object.
+  class Bank{
+    class Account{
+
+    }
+  }
+  eg:-3.Map is a collection of key value pairs and each key value pair is called entry. without existing Map there
+  is no meaning of existance of <key,value>
+  interface Map{
+    interface Entry{
+
+    }
+  }
+
+  RelationShip Between Inner and Outer Class:- It's not the relationship of parent-child.It is has a relationship.
+  Static and non-statci Methods of outer class are accessible from the inner class directly.
+
+  Normal Outer Inner class:-
+    class Outer{
+      class Inner{
+
+      }
+      public static void main(String args[]){
+
+      }
+    }
+    javac outer.java
+    java Outer
+    java outer$inner   => no such method Error :Main
+
+    Inside Inner class static members can't be declared hence it is not possible to declare main method and hence
+    inner class can't be invoked directly from command promt.
+
+    Accessing Inner class code from static area of outer class:-
+      class outer{
+        class inner{
+          public void m1(){
+            System.out.println("Inner class method");
+          }
+        }
+        public static void main(String args[]){
+          outer o = new outer();
+          outer.inner i = new o.new inner();
+          i.m1();
+        }
+      }
+
+
+  Method Local Inner Class:-
+    class Outer{
+      void outermethod(){
+        System.out.println("inside outer method");
+        class Inner{
+          void innermethod(){
+            System.out.println("Inside inner method");
+          }
+        }
+        Inner y = new Inner();
+        y.innermethod();
+      }
+    }
+
+
+    class Demo{
+      public static void main(String args[]){
+        outer o = new outer();
+        o.outermethod();
+      }
+    }
+
+  Method local classes can access only final local variables of outer class.
+
+  Static nested inner classes:-They are not technically an inner class. They are more like static member of outer class.
+  class outer{
+    private static void outerMethod(){
+
+    }
+    static class inner{
+      public static void main(String args[]){
+        outerMethod();
+      }
+    }
+  }
+
+
+Static Initialization Block:- Used to initialize only static variables.
+static initialization block can't be nested.
+
+
+constructor
+class A{
+  A(){
+
+  }
+  void A(){
+    //constructor having a return type
+  }
+}
+
+Duplicate Constructors are not allowed.
+Constructors can not be final,static or abstract.
+First Statement in constructor should be super() or this.
+If constructor is kept empty it will keep super() by default and if any other statement is
+kept it will give compile time error.
