@@ -1,3 +1,11 @@
+/*
+Given an array and q queries
+queries are of two types find_sum(l,r) and update(i,v)
+find_sum(l,r) => will find sum of array ranged from l to r
+update(i,v) => update value at index i to v
+
+*/
+
 #include <bits/stdc++.h>
 #define speed ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define endl "\n"
@@ -29,7 +37,7 @@ struct segment_tree{
         _build(a,0,0,size);
     }
     void _set(int i,int v,int x,int lx,int rx){
-        if(rx - lx==1){ //leaf node size_of_segment = 1... 
+        if(rx - lx==1){ //leaf node size_of_segment = 1...
             sums[x] = v;
             return;
         }

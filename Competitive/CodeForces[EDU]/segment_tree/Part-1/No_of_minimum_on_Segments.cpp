@@ -1,3 +1,11 @@
+/*
+Given an array and q queries
+queries are of two types find_min(l,r) and update(i,v)
+find_no_min(l,r) => calculate the minimum and number of elements equal to minimum of elements with indices from 𝑙 to 𝑟−1
+update(i,v) => update value at index i to v
+
+*/
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define speed ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
@@ -31,7 +39,7 @@ struct segment_tree{
             values[x].second = values[2*x+2].second;
         }else if(values[2*x+1].first==values[2*x+2].first){
             values[x].first = values[2*x+1].first;
-            values[x].second = values[2*x+1].second + values[2*x+2].second; 
+            values[x].second = values[2*x+1].second + values[2*x+2].second;
         }
     }
     void set(int i,int v){
@@ -55,7 +63,7 @@ struct segment_tree{
             values[x].second = values[2*x+2].second;
         }else if(values[2*x+1].first==values[2*x+2].first){
             values[x].first = values[2*x+1].first;
-            values[x].second = values[2*x+1].second + values[2*x+2].second; 
+            values[x].second = values[2*x+1].second + values[2*x+2].second;
         }
     }
     void build(vector<int>& a){
@@ -106,7 +114,7 @@ int main(){
             int l,r;
             cin>>l>>r;
             pair<int,int> ans = _st.get_min_count(l,r);
-        
+
             cout<<ans.first<<" "<<ans.second<<endl;
         }
     }

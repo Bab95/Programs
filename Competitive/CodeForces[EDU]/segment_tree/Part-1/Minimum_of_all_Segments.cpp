@@ -1,3 +1,11 @@
+/*
+Given an array and q queries
+queries are of two types find_min(l,r) and update(i,v)
+find_min(l,r) => will find minimum of array ranged from l to r
+update(i,v) => update value at index i to v
+
+*/
+
 #include <bits/stdc++.h>
 #define endl "\n"
 #define speed ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
@@ -10,7 +18,7 @@ struct segment_tree{
         while(size<n){
             size *= 2;
         }
-        values.assign(2*size,0);   
+        values.assign(2*size,0);
     }
     void _set(int i,int v,int x,int lx,int rx){
         if(rx-lx==1){

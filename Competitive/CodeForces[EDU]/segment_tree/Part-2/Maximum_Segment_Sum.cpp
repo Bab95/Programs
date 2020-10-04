@@ -1,3 +1,10 @@
+/*
+In this problem, you need to write a segment tree to find the segment with the maximum sum.
+
+
+
+*/
+
 #include <bits/stdc++.h>
 #define speed ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define endl "\n"
@@ -118,4 +125,3 @@ suff = max(suff2,sub_seg2 + suff1);
 max_subsegment(l,r)
 
 */
-
